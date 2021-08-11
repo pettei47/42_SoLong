@@ -1,0 +1,6 @@
+[submodule "libft"]
+	path = libft
+	url = https://github.com/pettei47/42_libft.git
+[submodule "gnl"]
+	path = gnl
+	url = https://github.com/pettei47/42_gnl.git
