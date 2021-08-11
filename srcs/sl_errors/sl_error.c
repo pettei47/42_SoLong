@@ -6,14 +6,16 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 16:54:55 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/11 17:00:14 by teppei           ###   ########.fr       */
+/*   Updated: 2021/08/11 17:36:20 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-void	sl_error(char *msg)
+void	sl_error(char *msg, int f)
 {
+	if (f == 0)
+		ft_putendl_fd("Error", 2);
 	ft_putendl_fd(msg, 2);
 	exit (FAILURE);
 }

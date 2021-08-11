@@ -6,9 +6,11 @@
 # include <stdbool.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
+# include "../gnl/get_next_line.h"
 
-# define FAILURE 1
-# define SUCCESS 0
+# define FAILURE	1
+# define SUCCESS	0
+# define MAP_CHAR	"10CEP"
 
 typedef struct s_img
 {
@@ -24,11 +26,9 @@ typedef struct s_img
 typedef struct s_long
 {
 	char		**map;
-	
 }				t_long;
 
 void	sl_check_ber(int ac, char **av);
-void	sl_error(char *msg);
+void	sl_error(char *msg, int f);
 
 #endif
-
