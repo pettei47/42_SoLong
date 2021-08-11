@@ -6,18 +6,21 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 12:46:40 by teppei            #+#    #+#              #
-#    Updated: 2021/08/11 15:37:23 by teppei           ###   ########.fr        #
+#    Updated: 2021/08/11 16:54:40 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	so_long
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -g
-SRCS		=	# your src files
+SRCS		=	solong_main.c \
+				srcs/sl_checks/sl_check_ber.c \
+				srcs/sl_errors/sl_error.c \
+				
 OBJS		=	$(SRCS:%.c=%.o)
 
-HEAD		=	./includes/ # your header file
-INCS		=	-I./includes
+HEAD		=	./incs/ # your header file
+INCS		=	-I./incs
 LINK		=	-L./libs
 LIBS		=	-lft -lgnl
 
@@ -31,9 +34,9 @@ $(NAME): $(OBJS)
 	cp libft/libft.a ./libs
 	@make -C gnl
 	cp gnl/libgnl.a ./libs
-	$(CC) -o $(NAME) $(OBJS) $(LINK) $(LIBS)
+	$(CC) -o $(NAME) $(OBJS) $(LINK) $(LIBS) 
 %.o: %.c $(HEAD)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(INCS) $(CFLAGS) -c $< -o $@
 clean:
 	rm -f $(OBJS) */*.gch
 	rm -rf *.dSYM
@@ -62,4 +65,4 @@ bfclean:
 	make fclean -C bonus
 	rm $(BONUS_NAME)
 
-.PHONY bonus bclean bfclean
+.PHONY: bonus bclean bfclean
