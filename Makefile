@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 12:46:40 by teppei            #+#    #+#              #
-#    Updated: 2021/08/11 15:28:43 by teppei           ###   ########.fr        #
+#    Updated: 2021/08/11 15:37:23 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,9 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	if [ ! -d libs ]; then mkdir libs; fi
 	@make -C libft
-	cp 42_utils/libft/libft.a ./libs
+	cp libft/libft.a ./libs
 	@make -C gnl
-	cp 42_utils/gnl/libgnl.a ./libs
+	cp gnl/libgnl.a ./libs
 	$(CC) -o $(NAME) $(OBJS) $(LINK) $(LIBS)
 %.o: %.c $(HEAD)
 	$(CC) $(CFLAGS) -c $< -o $@
