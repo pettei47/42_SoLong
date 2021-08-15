@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 18:11:07 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/14 21:15:06 by teppei           ###   ########.fr       */
+/*   Updated: 2021/08/16 01:00:05 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define FAILURE	1
 # define SUCCESS	0
 # define MAP_ELEM	"PCE"
-# define MAP_CHAR	"10"MAP_ELEM
+# define MAP_CHAR	"10PCE"
 # define BUF_SIZE	3
 
 typedef struct s_img

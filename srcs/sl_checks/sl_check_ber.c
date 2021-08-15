@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 16:20:15 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/16 00:01:16 by teppei           ###   ########.fr       */
+/*   Updated: 2021/08/16 01:01:24 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*sl_check_char_closed(char *line, t_long *l, int y, int f)
 	long		e;
 	static long	b;
 
-	if (!line /*|| ft_strncmp(line, "", 1) == 0*/)
+	if (!line)
 		return (NULL);
 	if (y + 1 > BUF_SIZE * (b + 1))
 		l->map = sl_recalloc_map(l, y, ++b);
@@ -89,6 +89,7 @@ void	sl_check_map(char *file, t_long *l)
 	close(fd);
 	if (ft_strncmp(line, "", 1))
 		line = sl_check_char_closed(line, l, y++, 1);
+	free(line);
 	l->map_y = y;
 }
 
