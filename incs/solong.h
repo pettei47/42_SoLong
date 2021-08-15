@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 18:11:07 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/11 18:11:09 by teppei           ###   ########.fr       */
+/*   Updated: 2021/08/14 21:15:06 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,35 @@
 
 # define FAILURE	1
 # define SUCCESS	0
-# define MAP_CHAR	"10CEP"
+# define MAP_ELEM	"PCE"
+# define MAP_CHAR	"10"MAP_ELEM
+# define BUF_SIZE	3
 
 typedef struct s_img
 {
 	void		*img;
 	char		*addr;
-	int			w;
-	int			h;
-	int			bpp;
-	int			line;
-	int			endian;
+	long		w;
+	long		h;
+	long		bpp;
+	long		line;
+	long		endian;
 }				t_img;
 
 typedef struct s_long
 {
 	char		**map;
+	long		map_x;
+	long		map_y;
 }				t_long;
 
-void	sl_check_ber(int ac, char **av);
+/* check input file */
+void	sl_check_ber(int ac, char **av, t_long *l);
+/* error handling */
 void	sl_error(char *msg, int f);
+void	sl_err_freelong(char *msg, t_long *l);
+/* init structs */
+void	sl_init_long(t_long *l);
+void	sl_set_map(char *file, t_long *l);
 
 #endif
