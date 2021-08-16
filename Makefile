@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 12:46:40 by teppei            #+#    #+#              #
-#    Updated: 2021/08/14 21:08:14 by teppei           ###   ########.fr        #
+#    Updated: 2021/08/16 22:23:40 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,10 @@ CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -g
 SRCS		=	solong_main.c \
 				srcs/sl_checks/sl_check_ber.c \
+				srcs/sl_checks/sl_check_char_exist.c \
 				srcs/sl_errors/sl_error.c \
-				srcs/sl_errors/sl_err_freelong.c \
 				srcs/sl_init/sl_init_long.c \
+				srcs/sl_destroy/sl_free_long.c \
 				
 OBJS		=	$(SRCS:%.c=%.o)
 

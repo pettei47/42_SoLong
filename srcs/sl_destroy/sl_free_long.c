@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sl_err_freelong.c                                  :+:      :+:    :+:   */
+/*   sl_free_long.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/11 18:30:50 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/11 18:48:41 by teppei           ###   ########.fr       */
+/*   Created: 2021/08/16 06:41:28 by teppei            #+#    #+#             */
+/*   Updated: 2021/08/16 09:12:23 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-void	sl_err_freelong(char *msg, t_long *l)
+void	sl_free_long(t_long *l)
 {
-	long	y;
+	long	i;
 
-	y = -1;
-	while (l->map[++y])
-		free(l->map[y]);
+	i = -1;
+	while (++i < l->map_y)
+		free(l->map[i]);
 	free(l->map);
-	sl_error(msg, 0);
 }
