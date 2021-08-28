@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 12:46:40 by teppei            #+#    #+#              #
-#    Updated: 2021/08/16 22:23:40 by teppei           ###   ########.fr        #
+#    Updated: 2021/08/28 11:34:57 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,11 @@ SRCS		=	solong_main.c \
 				srcs/sl_checks/sl_check_char_exist.c \
 				srcs/sl_errors/sl_error.c \
 				srcs/sl_init/sl_init_long.c \
+				srcs/sl_init/sl_init_map.c \
+				srcs/sl_init/sl_init_l_members.c \
+				srcs/sl_destroy/sl_free_map.c \
 				srcs/sl_destroy/sl_free_long.c \
+				srcs/sl_destroy/sl_free_l_members.c \
 				
 OBJS		=	$(SRCS:%.c=%.o)
 

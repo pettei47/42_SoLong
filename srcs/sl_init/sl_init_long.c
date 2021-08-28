@@ -5,23 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/11 18:24:56 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/16 06:52:21 by teppei           ###   ########.fr       */
+/*   Created: 2021/08/18 23:42:40 by teppei            #+#    #+#             */
+/*   Updated: 2021/08/28 11:53:46 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-void	sl_init_long(t_long *l)
+t_long	*sl_init_long(t_map *m)
 {
-	long	i;
+	t_long	*l;
 
-	l->map_x = -1;
-	l->map_y = -1;
-	l->map = (char **)malloc(sizeof(char *) * (BUF_SIZE + 1));
-	if (!(l->map))
-		sl_error("failed to malloc at init t_long", l, 0);
-	i = -1;
-	while (++i < BUF_SIZE)
-		l->map[i] = NULL;
+	l = (t_long *)malloc(sizeof(t_long));
+	if (!l)
+		sl_error("failed to malloc in init_long", m, 1);
+	l->m = m;
+	l->p = sl_init_player();
+	l->c = sl_init_collects();
+	l->e = sl_init_exits();
+	l->wins = sl_init_wins();
+	l->imgs = sl_init_img();
+	l->floor = NULL;
+	l->bottom = NULL;
+	l->moves = 0;
+	l->frame = 0;
+	if (!l->p || !l->c || !l->e || !l->wins || !l->imgs)
+		sl_error("failed to malloc in init_long", l, 2);
+	return (l);
 }
