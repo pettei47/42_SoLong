@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:04:48 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/28 11:50:22 by teppei           ###   ########.fr       */
+/*   Updated: 2021/08/29 15:46:35 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	sl_free_exits(t_exits *e)
 	t_exit	*target;
 	t_exit	*tmp;
 
-	if(!e)
+	if (!e)
 		return ;
 	target = e->first;
 	while (target)

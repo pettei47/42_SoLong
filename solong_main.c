@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 16:18:44 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/28 11:54:24 by teppei           ###   ########.fr       */
+/*   Updated: 2021/08/28 13:57:52 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 /*
 void	sl_loop(t_data *d)
 {
-	mlx_loop_hook(mem->vars->mlx, render_next_frame, mem);
-	mlx_hook(mem->vars->win, 2, 1L << 0, key_hook, mem);
-	mlx_hook(mem->vars->win, 33, 1L << 5, close_clean, mem);
-	mlx_loop(mem->vars->mlx);
+	mlx_loop_hook(l->wins->mlx, render_next_frame, mem);
+	mlx_hook(l->wins->win, 2, 1L << 0, key_hook, mem);
+	mlx_hook(l->wins->win, 33, 1L << 5, close_clean, mem);
+	mlx_loop(l->wins->mlx);
 }
 */
+
 int	main(int ac, char **av)
 {
 	t_long	*l;

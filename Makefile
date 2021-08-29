@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 12:46:40 by teppei            #+#    #+#              #
-#    Updated: 2021/08/28 11:34:57 by teppei           ###   ########.fr        #
+#    Updated: 2021/08/29 09:17:07 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,30 +29,54 @@ OBJS		=	$(SRCS:%.c=%.o)
 HEAD		=	./incs/ # your header file
 INCS		=	-I./incs
 LINK		=	-L./libs
-LIBS		=	-lft -lgnl
+LIBS		=	-lft -lgnl -lmlx
 
 BONUS_NAME	= # your bonus target file
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	if [ ! -d libs ]; then mkdir libs; fi
+$(NAME): $(OBJS) mlx
+	@if [ ! -d libs ]; then mkdir libs; fi
 	@make -C libft
-	cp libft/libft.a ./libs
+	@cp libft/libft.a ./libs
 	@make -C gnl
-	cp gnl/libgnl.a ./libs
+	@cp gnl/libgnl.a ./libs
 	$(CC) -o $(NAME) $(OBJS) $(LINK) $(LIBS) 
 %.o: %.c $(HEAD)
 	$(CC) $(INCS) $(CFLAGS) -c $< -o $@
+
+ifeq ($(shell uname),Darwin)
+mlx:
+	@make -C mlx_mac
+	@cp mlx_mac/libmlx.dylib ./libs
+	@cp mlx_mac/libmlx.dylib .
+else
+mlx:
+	make -C mlx_linux
+	cp mlx_linux/libmlx.dylib ./libs
+	cp mlx_linux/libmlx.dylib ./
+endif
+
 clean:
-	rm -f $(OBJS) */*.gch
-	rm -rf *.dSYM
+	@rm -f $(OBJS) */*.gch
+	@rm -rf *.dSYM
 fclean: clean
-	rm -f $(NAME)
-	rm -f libs/*.a
-alclean: fclean bfclean
-	make fclean -C 42_utils/libft
-	make fclean -C 42_utils/gnl
+	@rm -f $(NAME)
+	@rm -f libs/*.a
+	@rm -rf libs/libmlx.dylib
+	@rm -rf ./libmlx.dylib
+
+ifeq ($(shell uname),Darwin)
+alclean: fclean
+	@make fclean -C libft
+	@make fclean -C gnl
+	@make clean -C mlx_mac
+else
+alclean: fclean
+	@make fclean -C libft
+	@make fclean -C gnl
+	@make clean -C mlx_linux
+endif
 
 re: fclean all
 cl: all clean

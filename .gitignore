@@ -6,3 +6,4 @@ case*/
 a.out
 *.o
 .DS*
+*.swiftmodule

@@ -15,4 +15,5 @@ jobs:
         python3 -m pip install norminette
     - name: norminette
       run: |
-        norminette
+        norminette incs srcs maps solong_main.c 
+        
