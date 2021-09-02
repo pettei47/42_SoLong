@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 16:47:52 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/03 00:26:15 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/03 02:50:13 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ t_pict	*sl_set_texture_img(t_long *l, char *path)
 	if (!i->i)
 		sl_error("texture file error", l, 2);
 	i->addr = mlx_get_data_addr(i->i, &i->bpp, &i->line, &i->endian);
-	printf("img->w:%d\n", i->w);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 18:11:07 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/03 00:22:26 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/03 03:07:08 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define MAP_ELEM	"CEP"
 # define MAP_CHAR	"10CEP"
 # define BUF_SIZE	200
-# define PLAYER		"./textures/player_01.xpm"
+# define PLAYER		"./textures/player_02.xpm"
 # define WALL		"./textures/wall_01.xpm"
 # define FLOOR		"./textures/sand.xpm"
 # define EXIT_PICT	"./textures/door_01.xpm"
@@ -74,8 +74,8 @@ typedef struct s_player
 	t_pict	img;
 	int		x;
 	int		y;
-	float	smooth_x;
-	float	smooth_y;
+	float	mv_x;
+	float	mv_y;
 }				t_player;
 
 typedef struct s_collect
