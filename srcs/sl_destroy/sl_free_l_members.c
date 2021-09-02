@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:04:48 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/29 15:46:35 by teppei           ###   ########.fr       */
+/*   Updated: 2021/08/29 18:08:47 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	sl_free_exits(t_exits *e)
 	free(e);
 }
 
-void	sl_free_img(t_img *i)
+void	sl_free_img(t_pict *i)
 {
 	if (!i)
 		return ;

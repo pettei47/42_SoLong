@@ -6,25 +6,34 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 09:37:14 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/28 11:53:48 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/03 00:11:18 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-t_player	*sl_init_player(void)
+t_player	*sl_init_player(t_map *m)
 {
 	t_player	*p;
+	long		x;
+	long		y;
 
 	p = (t_player *)malloc(sizeof(t_player));
 	if (!p)
 		return (NULL);
-	//is_foundいらないかも？
-	p->is_found = false;
 	p->smooth_x = 0;
 	p->smooth_y = 0;
-	p->x = 0;
-	p->y = 0;
+	y = -1;
+	while (++y < m->map_y)
+	{
+		x = 0;
+		while (x < m->map_x && m->map[y][x] != 'P')
+			x++;
+		if (m->map[y][x] == 'P')
+			break ;
+	}
+	p->x = x;
+	p->y = y;
 	return (p);
 }
 
@@ -36,8 +45,6 @@ t_collects	*sl_init_collects(void)
 	if (!c)
 		return (NULL);
 	c->first = NULL;
-	//is_emptyいらないかも？
-	c->is_empty = true;
 	return (c);
 }
 
@@ -49,16 +56,14 @@ t_exits	*sl_init_exits(void)
 	if (!e)
 		return (NULL);
 	e->first = NULL;
-	//is_emptyいらないかも？
-	e->is_empty = true;
 	return (e);
 }
 
-t_img	*sl_init_img(void)
+t_pict	*sl_init_pict(void)
 {
-	t_img	*i;
+	t_pict	*i;
 
-	i = (t_img *)malloc(sizeof(t_img));
+	i = (t_pict *)malloc(sizeof(t_pict));
 	if (!i)
 		return (NULL);
 	i->i = NULL;

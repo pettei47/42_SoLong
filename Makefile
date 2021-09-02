@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 12:46:40 by teppei            #+#    #+#              #
-#    Updated: 2021/08/29 09:17:07 by teppei           ###   ########.fr        #
+#    Updated: 2021/08/30 21:27:31 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,10 @@ SRCS		=	solong_main.c \
 				srcs/sl_destroy/sl_free_map.c \
 				srcs/sl_destroy/sl_free_long.c \
 				srcs/sl_destroy/sl_free_l_members.c \
+				srcs/sl_destroy/sl_close_all.c \
+				srcs/sl_images/sl_load_texture.c \
+				srcs/sl_render/sl_render_frame.c \
+				srcs/sl_render/sl_draw_img.c \
 				
 OBJS		=	$(SRCS:%.c=%.o)
 
@@ -35,7 +39,7 @@ BONUS_NAME	= # your bonus target file
 
 all: $(NAME)
 
-$(NAME): $(OBJS) mlx
+$(NAME): mlx $(OBJS)
 	@if [ ! -d libs ]; then mkdir libs; fi
 	@make -C libft
 	@cp libft/libft.a ./libs
@@ -50,11 +54,13 @@ mlx:
 	@make -C mlx_mac
 	@cp mlx_mac/libmlx.dylib ./libs
 	@cp mlx_mac/libmlx.dylib .
+	@cp mlx_mac/mlx.h ./incs
 else
 mlx:
 	make -C mlx_linux
 	cp mlx_linux/libmlx.dylib ./libs
 	cp mlx_linux/libmlx.dylib ./
+	cp mlx_linux/mlx.h ./incs
 endif
 
 clean:
@@ -65,6 +71,7 @@ fclean: clean
 	@rm -f libs/*.a
 	@rm -rf libs/libmlx.dylib
 	@rm -rf ./libmlx.dylib
+	@rm -f incs/mlx.h
 
 ifeq ($(shell uname),Darwin)
 alclean: fclean
