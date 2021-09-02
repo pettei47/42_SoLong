@@ -7,3 +7,8 @@ a.out
 *.o
 .DS*
 *.swiftmodule
+libmlx.dylib
+*.dSYM
+*.swiftdoc
+*.a
+incs/mlx.h
