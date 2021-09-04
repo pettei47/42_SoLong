@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 12:46:40 by teppei            #+#    #+#              #
-#    Updated: 2021/08/30 21:27:31 by teppei           ###   ########.fr        #
+#    Updated: 2021/09/04 19:06:45 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS		=	solong_main.c \
 				srcs/sl_images/sl_load_texture.c \
 				srcs/sl_render/sl_render_frame.c \
 				srcs/sl_render/sl_draw_img.c \
+				srcs/sl_keys/sl_key_hook.c \
 				
 OBJS		=	$(SRCS:%.c=%.o)
 

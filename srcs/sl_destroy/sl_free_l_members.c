@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 11:04:48 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/29 18:08:47 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/04 20:03:27 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,54 +19,19 @@ void	sl_free_player(t_player *p)
 	free(p);
 }
 
-void	sl_free_collects(t_collects *c)
+void	sl_free_item_list(t_item_list *i)
 {
-	t_collect	*target;
-	t_collect	*tmp;
+	t_item	*target;
+	t_item	*tmp;
 
-	if (!c)
-		return ;
-	target = c->first;
-	while (target)
-	{
-		tmp = target->next;
-		free(target);
-		target = tmp;
-	}
-	free(c);
-}
-
-void	sl_free_exits(t_exits *e)
-{
-	t_exit	*target;
-	t_exit	*tmp;
-
-	if (!e)
-		return ;
-	target = e->first;
-	while (target)
-	{
-		tmp = target->next;
-		free(target);
-		target = tmp;
-	}
-	free(e);
-}
-
-void	sl_free_img(t_pict *i)
-{
 	if (!i)
 		return ;
-	free(i->addr);
-	free(i->i);
+	target = i->first;
+	while (target)
+	{
+		tmp = target->next;
+		free(target);
+		target = tmp;
+	}
 	free(i);
-}
-
-void	sl_free_wins(t_wins *w)
-{
-	if (!w)
-		return ;
-	free(w->mlx);
-	free(w->win);
-	free(w);
 }

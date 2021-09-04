@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 16:54:55 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/28 11:50:40 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/04 19:33:57 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ void	sl_error(char *msg, void *p, int f)
 		sl_free_long((t_long *)p);
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(msg, 2);
-	exit (FAILURE);
+	system("leaks so_long");
+	exit (1);
 }

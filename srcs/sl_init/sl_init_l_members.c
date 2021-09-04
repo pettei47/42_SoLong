@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 09:37:14 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/03 02:55:45 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/04 20:09:04 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,15 @@ t_player	*sl_init_player(t_map *m)
 	return (p);
 }
 
-t_collects	*sl_init_collects(void)
+t_item_list	*sl_init_item_list(void)
 {
-	t_collects	*c;
+	t_item_list	*i;
 
-	c = (t_collects *)malloc(sizeof(t_collects));
-	if (!c)
+	i = (t_item_list *)malloc(sizeof(t_item_list));
+	if (!i)
 		return (NULL);
-	c->first = NULL;
-	return (c);
-}
-
-t_exits	*sl_init_exits(void)
-{
-	t_exits	*e;
-
-	e = (t_exits *)malloc(sizeof(t_exits));
-	if (!e)
-		return (NULL);
-	e->first = NULL;
-	return (e);
+	i->first = NULL;
+	return (i);
 }
 
 t_pict	*sl_init_pict(void)

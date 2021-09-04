@@ -6,39 +6,53 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 21:11:37 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/30 21:20:49 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/04 19:12:57 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-void	sl_other_keys(int key, t_long *l)
+void	sl_put_move_cli(int key, t_long *l)
 {
-	if (l->m->map[(int)(l->p->y)][(int)(l->p->x + 1)] != '1' && key == D)
-	{
-		l->p->x += 1;
-		l->moves++;
-	}
-	
+	if (key != W && key != A && key != S && key != D)
+		return ;
+	l->moves++;
+	ft_putnbr_fd(l->moves, 1);
+	if (key == W)
+		ft_putendl_fd(": W", 1);
+	if (key == A)
+		ft_putendl_fd(": A", 1);
+	if (key == S)
+		ft_putendl_fd(": S", 1);
+	if (key == D)
+		ft_putendl_fd(": D", 1);
 }
 
 int	sl_key_hook(int key, t_long *l)
 {
-	if (l->m->map[(int)(l->p->y - 1)][(int)(l->p->x)] != '1' && key == W)
-	{
+	long	x;
+	long	y;
+
+	x = l->p->x;
+	y = l->p->y;
+	if (key == ESC)
+		sl_close_all(l);
+	if (l->m->map[(int)(y - 1)][(int)x] != '1' && key == W)
 		l->p->y -= 1;
-		l->moves++;
-	}
-	else if (l->m->map[(int)(l->p->y)][(int)(l->p->x - 1)] != '1' && key == A)
-	{
+	else if (l->m->map[(int)y][(int)(x - 1)] != '1' && key == A)
 		l->p->x -= 1;
-		l->moves++;
-	}
-	else if (l->m->map[(int)(l->p->y + 1)][(int)(l->p->x)] != '1' && key == S)
-	{
+	else if (l->m->map[(int)(y + 1)][(int)x] != '1' && key == S)
 		l->p->y += 1;
-		l->moves++;
-	}
-	sl_other_keys(key, m);
+	if (l->m->map[(int)y][(int)(x + 1)] != '1' && key == D)
+		l->p->x += 1;
+	if (y != l->p->y || x != l->p->x)
+		sl_put_move_cli(key, l);
+	/*
+	if (is_collectible(m, (int)m->p->x, (int)m->p->y) == SUCCESS)
+		set_to_true(m);
+	if ((is_exit(m, (int)m->p->x, (int)m->p->y) == SUCCESS)
+		&& c_all_touched(m) == SUCCESS)
+		sl_close_all(m);
+	*/
 	return (SUCCESS);
 }

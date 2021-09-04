@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 18:11:07 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/03 03:07:08 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/04 20:08:44 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,33 +78,19 @@ typedef struct s_player
 	float	mv_y;
 }				t_player;
 
-typedef struct s_collect
-{
-	int					pos_x;
-	int					pos_y;
-	bool				is_touched;
-	struct s_collect	*next;
-}				t_collect;
-
-typedef struct s_collects
-{
-	t_collect	*first;
-	t_pict		img;
-}				t_collects;
-
-typedef struct s_exit
+typedef struct s_item
 {
 	int				pos_x;
 	int				pos_y;
 	bool			is_touched;
-	struct s_exit	*next;
-}				t_exit;
+	struct s_item	*next;
+}				t_item;
 
-typedef struct s_exits
+typedef struct s_item_list
 {
+	t_item	*first;
 	t_pict	img;
-	t_exit	*first;
-}			t_exits;
+}				t_item_list;
 
 typedef struct s_v
 {
@@ -131,8 +117,8 @@ typedef struct s_draw
 typedef struct s_long
 {
 	t_player		*p;
-	t_collects		*c;
-	t_exits			*e;
+	t_item_list		*c;
+	t_item_list		*e;
 	t_wins			*wins;
 	t_pict			*imgs;
 	t_pict			*wall;
@@ -152,16 +138,14 @@ t_long		*sl_init_long(t_map *m);
 void		sl_init_map(t_map *m);
 void		sl_set_map(char *file, t_map *m);
 t_player	*sl_init_player(t_map *m);
-t_collects	*sl_init_collects(void);
-t_exits		*sl_init_exits(void);
+t_item_list	*sl_init_item_list(void);
 t_pict		*sl_init_pict(void);
 t_wins		*sl_init_wins(void);
 /* destructors */
 void		sl_free_long(t_long *l);
 void		sl_free_map(t_map *m);
 void		sl_free_player(t_player *p);
-void		sl_free_collects(t_collects *c);
-void		sl_free_exits(t_exits *e);
+void		sl_free_item_list(t_item_list *i);
 void		sl_free_img(t_pict *i);
 void		sl_free_wins(t_wins *w);
 int			sl_close_all(t_long *l);
@@ -171,6 +155,6 @@ t_pict		*sl_set_texture_img(t_long *l, char *path);
 /* render frame*/
 int			sl_render_frame(t_long *l);
 void		sl_draw_img(t_pict *img, t_pict *img2, int x, int y);
-
+int			sl_key_hook(int key, t_long *l);
 
 #endif
