@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 12:46:40 by teppei            #+#    #+#              #
-#    Updated: 2021/09/04 19:06:45 by teppei           ###   ########.fr        #
+#    Updated: 2021/09/04 21:27:31 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ SRCS		=	solong_main.c \
 				srcs/sl_init/sl_init_l_members.c \
 				srcs/sl_destroy/sl_free_map.c \
 				srcs/sl_destroy/sl_free_long.c \
-				srcs/sl_destroy/sl_free_l_members.c \
 				srcs/sl_destroy/sl_close_all.c \
 				srcs/sl_images/sl_load_texture.c \
 				srcs/sl_render/sl_render_frame.c \

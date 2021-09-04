@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 21:21:42 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/04 19:29:55 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/04 21:21:01 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	sl_close_all(t_long *l)
 {
 	if (l->p->img.i)
 		mlx_destroy_image(l->wins->mlx, l->p->img.i);
-	if (l->e->img.i)
-		mlx_destroy_image(l->wins->mlx, l->e->img.i);
-	if (l->c->img.i)
-		mlx_destroy_image(l->wins->mlx, l->c->img.i);
+	if (l->e->i)
+		mlx_destroy_image(l->wins->mlx, l->e->i);
+	if (l->c->i)
+		mlx_destroy_image(l->wins->mlx, l->c->i);
 	if (l->floor->i)
 		mlx_destroy_image(l->wins->mlx, l->floor->i);
 	if (l->wall->i)

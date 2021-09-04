@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 21:11:37 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/04 19:12:57 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/04 21:26:23 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,5 @@ int	sl_key_hook(int key, t_long *l)
 		l->p->x += 1;
 	if (y != l->p->y || x != l->p->x)
 		sl_put_move_cli(key, l);
-	/*
-	if (is_collectible(m, (int)m->p->x, (int)m->p->y) == SUCCESS)
-		set_to_true(m);
-	if ((is_exit(m, (int)m->p->x, (int)m->p->y) == SUCCESS)
-		&& c_all_touched(m) == SUCCESS)
-		sl_close_all(m);
-	*/
 	return (SUCCESS);
 }

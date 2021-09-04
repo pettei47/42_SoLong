@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 16:18:44 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/04 20:20:13 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/04 21:26:04 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sl_loop(t_long *l)
 	mlx_loop(l->wins->mlx);
 }
 
-void	sl_init_mlx(t_long *l, void *mlx, t_map *m)
+void	sl_init_mlx(t_long *l, void *mlx, t_pict *i, t_map *m)
 {
 	int	x;
 	int	y;
@@ -32,8 +32,7 @@ void	sl_init_mlx(t_long *l, void *mlx, t_map *m)
 	mlx_get_screen_size(l->wins->mlx, &sc_x, &sc_y);
 	l->wins->win = mlx_new_window(mlx, x, y, "SoLong");
 	l->imgs->i = mlx_new_image(mlx, x, y);
-	l->imgs->addr = mlx_get_data_addr(l->imgs->i, \
-					&l->imgs->bpp, &l->imgs->line, &l->imgs->endian);
+	l->imgs->addr = mlx_get_data_addr(i->i, &i->bpp, &i->line, &i->endian);
 }
 
 void	sl_set_textures(t_long *l)
@@ -41,8 +40,8 @@ void	sl_set_textures(t_long *l)
 	l->p->img = sl_load_texture(l, PLAYER);
 	l->wall = sl_set_texture_img(l, WALL);
 	l->floor = sl_set_texture_img(l, FLOOR);
-	l->e->img = sl_load_texture(l, EXIT_PICT);
-	l->c->img = sl_load_texture(l, COLLECT);
+	l->e = sl_set_texture_img(l, EXIT_PICT);
+	l->c = sl_set_texture_img(l, COLLECT);
 }
 
 int	main(int ac, char **av)
@@ -54,11 +53,9 @@ int	main(int ac, char **av)
 		sl_error("must be 1 argments.", NULL, 3);
 	sl_init_map(&map);
 	sl_check_ber(ac, av, &map);
-	for (int i = 0; i < map.map_y; i++)
-		printf("[%d]%s\n", i, map.map[i]);
 	l = sl_init_long(&map);
 	l->wins->mlx = mlx_init();
-	sl_init_mlx(l, l->wins->mlx, l->m);
+	sl_init_mlx(l, l->wins->mlx, l->imgs, l->m);
 	sl_set_textures(l);
 	sl_loop(l);
 	sl_free_long(l);

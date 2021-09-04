@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 18:11:07 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/04 20:08:44 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/04 21:27:38 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,29 +78,6 @@ typedef struct s_player
 	float	mv_y;
 }				t_player;
 
-typedef struct s_item
-{
-	int				pos_x;
-	int				pos_y;
-	bool			is_touched;
-	struct s_item	*next;
-}				t_item;
-
-typedef struct s_item_list
-{
-	t_item	*first;
-	t_pict	img;
-}				t_item_list;
-
-typedef struct s_v
-{
-	int	x;
-	int	y;
-	int	i;
-	int	j;
-	int	an;
-}				t_v;
-
 typedef struct s_draw
 {
 	int		x;
@@ -117,8 +94,8 @@ typedef struct s_draw
 typedef struct s_long
 {
 	t_player		*p;
-	t_item_list		*c;
-	t_item_list		*e;
+	t_pict			*c;
+	t_pict			*e;
 	t_wins			*wins;
 	t_pict			*imgs;
 	t_pict			*wall;
@@ -138,14 +115,11 @@ t_long		*sl_init_long(t_map *m);
 void		sl_init_map(t_map *m);
 void		sl_set_map(char *file, t_map *m);
 t_player	*sl_init_player(t_map *m);
-t_item_list	*sl_init_item_list(void);
 t_pict		*sl_init_pict(void);
 t_wins		*sl_init_wins(void);
 /* destructors */
 void		sl_free_long(t_long *l);
 void		sl_free_map(t_map *m);
-void		sl_free_player(t_player *p);
-void		sl_free_item_list(t_item_list *i);
 void		sl_free_img(t_pict *i);
 void		sl_free_wins(t_wins *w);
 int			sl_close_all(t_long *l);
