@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 16:18:44 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/04 21:26:04 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/06 22:46:53 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ void	sl_init_mlx(t_long *l, void *mlx, t_pict *i, t_map *m)
 
 void	sl_set_textures(t_long *l)
 {
+	(void)l;
 	l->p->img = sl_load_texture(l, PLAYER);
+	l->en->img = sl_load_texture(l, ENEMY);
 	l->wall = sl_set_texture_img(l, WALL);
 	l->floor = sl_set_texture_img(l, FLOOR);
 	l->e = sl_set_texture_img(l, EXIT_PICT);

@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 18:11:07 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/04 21:27:38 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/06 22:46:24 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@
 # define MAP_ELEM	"CEP"
 # define MAP_CHAR	"10CEP"
 # define BUF_SIZE	200
-# define PLAYER		"./textures/player_02.xpm"
+# define PLAYER		"./textures/player_01.xpm"
+# define ENEMY		"./textures/enemy_01.xpm"
 # define WALL		"./textures/wall_01.xpm"
 # define FLOOR		"./textures/sand.xpm"
 # define EXIT_PICT	"./textures/door_01.xpm"
@@ -94,6 +95,8 @@ typedef struct s_draw
 typedef struct s_long
 {
 	t_player		*p;
+	t_player		*en;
+	bool			enemy;
 	t_pict			*c;
 	t_pict			*e;
 	t_wins			*wins;
@@ -115,6 +118,7 @@ t_long		*sl_init_long(t_map *m);
 void		sl_init_map(t_map *m);
 void		sl_set_map(char *file, t_map *m);
 t_player	*sl_init_player(t_map *m);
+t_player	*sl_init_enemy(void);
 t_pict		*sl_init_pict(void);
 t_wins		*sl_init_wins(void);
 /* destructors */
