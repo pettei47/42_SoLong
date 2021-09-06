@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 21:11:37 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/04 21:26:23 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/06 22:41:06 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ void	sl_put_move_cli(int key, t_long *l)
 	ft_putnbr_fd(l->moves, 1);
 	if (key == W)
 		ft_putendl_fd(": W", 1);
-	if (key == A)
+	else if (key == A)
 		ft_putendl_fd(": A", 1);
-	if (key == S)
+	else if (key == S)
 		ft_putendl_fd(": S", 1);
-	if (key == D)
+	else if (key == D)
 		ft_putendl_fd(": D", 1);
+	else
+		return ;
 }
 
 int	sl_key_hook(int key, t_long *l)
