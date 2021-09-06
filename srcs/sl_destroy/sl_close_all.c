@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 21:21:42 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/04 21:21:01 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/06 20:31:59 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	sl_close_all(t_long *l)
 	if (l->wins->win)
 		mlx_destroy_window(l->wins->mlx, l->wins->win);
 	sl_free_long(l);
+	//提出前に消す
 	system("leaks so_long");
 	exit (0);
 }
