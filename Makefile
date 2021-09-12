@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 12:46:40 by teppei            #+#    #+#              #
-#    Updated: 2021/09/04 21:27:31 by teppei           ###   ########.fr        #
+#    Updated: 2021/09/12 11:37:35 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS		=	solong_main.c \
 				srcs/sl_render/sl_render_frame.c \
 				srcs/sl_render/sl_draw_img.c \
 				srcs/sl_keys/sl_key_hook.c \
+				srcs/bonus_enemy/sl_render_enemy.c \
 				
 OBJS		=	$(SRCS:%.c=%.o)
 
@@ -35,7 +36,7 @@ INCS		=	-I./incs
 LINK		=	-L./libs
 LIBS		=	-lft -lgnl -lmlx
 
-BONUS_NAME	= # your bonus target file
+# BONUS_NAME	=	so_bonus
 
 all: $(NAME)
 
@@ -92,9 +93,7 @@ reall: alclean all
 .PHONY: all clean fclean re cl alclean reall
 
 # if you challenge bonus
-bonus:
-	make -C bonus
-	cp bonus/$(BONUS_NAME) .
+bonus: all
 
 bclean:
 	make clean -C bonus
