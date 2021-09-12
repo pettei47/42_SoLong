@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 22:11:21 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/04 21:28:22 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/06 23:29:31 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	sl_render_player(t_long *l, t_player *p, t_pict *i)
 	sl_draw_img(i, &(p->img), (int)(p->mv_x * DRAW), (int)(p->mv_y * DRAW));
 	if (l->m->map[l->p->y][l->p->x] == 'C')
 		l->m->map[l->p->y][l->p->x] = '0';
+	if (l->p->y == l->en->y && l->p->x == l->en->x)
+		sl_close_all(l);
 }
 
 void	sl_check_complete(t_long *l, t_map *m)
@@ -83,6 +85,7 @@ int	sl_render_frame(t_long *l)
 	sl_render_map(l);
 	sl_render_item(l, l->c, 'C');
 	sl_render_item(l, l->e, 'E');
+	sl_render_enemy(l, l->en, l->imgs);
 	sl_render_player(l, l->p, l->imgs);
 	mlx_put_image_to_window(l->wins->mlx, l->wins->win, l->imgs->i, 0, 0);
 	return (SUCCESS);

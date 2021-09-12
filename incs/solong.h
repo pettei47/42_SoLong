@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 18:11:07 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/04 21:27:38 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/06 23:13:55 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define DRAW		64
 # define BLACKCOLOR	0xFF000000
 # define ESC		53
+# define SPACE		49
 # define W			13
 # define S			1
 # define D			2
@@ -40,7 +41,8 @@
 # define MAP_ELEM	"CEP"
 # define MAP_CHAR	"10CEP"
 # define BUF_SIZE	200
-# define PLAYER		"./textures/player_02.xpm"
+# define PLAYER		"./textures/player_01.xpm"
+# define ENEMY		"./textures/enemy_01.xpm"
 # define WALL		"./textures/wall_01.xpm"
 # define FLOOR		"./textures/sand.xpm"
 # define EXIT_PICT	"./textures/door_01.xpm"
@@ -94,6 +96,8 @@ typedef struct s_draw
 typedef struct s_long
 {
 	t_player		*p;
+	t_player		*en;
+	bool			enemy;
 	t_pict			*c;
 	t_pict			*e;
 	t_wins			*wins;
@@ -115,6 +119,7 @@ t_long		*sl_init_long(t_map *m);
 void		sl_init_map(t_map *m);
 void		sl_set_map(char *file, t_map *m);
 t_player	*sl_init_player(t_map *m);
+t_player	*sl_init_enemy(void);
 t_pict		*sl_init_pict(void);
 t_wins		*sl_init_wins(void);
 /* destructors */
@@ -130,5 +135,6 @@ t_pict		*sl_set_texture_img(t_long *l, char *path);
 int			sl_render_frame(t_long *l);
 void		sl_draw_img(t_pict *img, t_pict *img2, int x, int y);
 int			sl_key_hook(int key, t_long *l);
+void		sl_render_enemy(t_long *l, t_player *en, t_pict *img);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:42:40 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/04 21:18:28 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/06 22:31:34 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_long	*sl_init_long(t_map *m)
 		sl_error("failed to malloc in init_long", m, 1);
 	l->m = m;
 	l->p = sl_init_player(m);
+	l->en = sl_init_enemy();
+	l->enemy = false;
 	l->c = NULL;
 	l->e = NULL;
 	l->wins = sl_init_wins();
@@ -29,7 +31,7 @@ t_long	*sl_init_long(t_map *m)
 	l->wall = NULL;
 	l->moves = 0;
 	l->frame = 0;
-	if (!l->p || !l->wins || !l->imgs)
+	if (!l->p || !l->en || !l->wins || !l->imgs)
 		sl_error("failed to malloc in init_long", l, 2);
 	return (l);
 }
