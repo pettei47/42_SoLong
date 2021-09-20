@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 12:46:40 by teppei            #+#    #+#              #
-#    Updated: 2021/09/12 11:37:35 by teppei           ###   ########.fr        #
+#    Updated: 2021/09/20 18:38:02 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,38 +31,53 @@ SRCS		=	solong_main.c \
 				
 OBJS		=	$(SRCS:%.c=%.o)
 
-HEAD		=	./incs/ # your header file
+HEAD		=	./incs/
 INCS		=	-I./incs
 LINK		=	-L./libs
 LIBS		=	-lft -lgnl -lmlx
 
-# BONUS_NAME	=	so_bonus
-
 all: $(NAME)
 
-$(NAME): mlx $(OBJS)
+$(NAME): $(OBJS)
+	$(CC) -o $@ $^ $(LINK) $(LIBS)
+
+# ifeq ($(shell uname),Darwin)
+# else
+# mlx:
+#	@make -C mlx_linux
+#	@cp mlx_linux/libmlx.dylib ./libs
+#	@cp mlx_linux/libmlx.dylib ./
+#	@cp mlx_linux/mlx.h ./incs
+# endif
+
+mlx:
+	@if [ ! -d libs ]; then mkdir libs; fi
+	@make -C mlx_mac >dev/null 2>&1
+	@if [ ! -e libs/libmlx.dylib ]; then cp mlx_mac/libmlx.dylib libs; fi
+	@if [ ! -e libmlx.dylib ]; then cp mlx_mac/libmlx.dylib .; fi
+	@if [ ! -e incs/mlx.h ]; then cp mlx_mac/mlx.h incs; fi
+
+ftgnl:
 	@if [ ! -d libs ]; then mkdir libs; fi
 	@make -C libft
-	@cp libft/libft.a ./libs
+	@if [ ! -e libs/libft.a ]; then cp libft/libft.a libs; else echo OK; fi
 	@make -C gnl
-	@cp gnl/libgnl.a ./libs
-	$(CC) -o $(NAME) $(OBJS) $(LINK) $(LIBS) 
-%.o: %.c $(HEAD)
-	$(CC) $(INCS) $(CFLAGS) -c $< -o $@
+	@if [ ! -e libs/libgnl.a ]; then cp gnl/libgnl.a libs; else echo OK; fi
 
-ifeq ($(shell uname),Darwin)
-mlx:
-	@make -C mlx_mac
-	@cp mlx_mac/libmlx.dylib ./libs
-	@cp mlx_mac/libmlx.dylib .
-	@cp mlx_mac/mlx.h ./incs
-else
-mlx:
-	make -C mlx_linux
-	cp mlx_linux/libmlx.dylib ./libs
-	cp mlx_linux/libmlx.dylib ./
-	cp mlx_linux/mlx.h ./incs
-endif
+.c.o:
+	@if [ ! -d libs ]; then mkdir libs; fi
+# make mlx
+	@make -C mlx_mac >/dev/null 2>&1
+	@if [ ! -e libs/libmlx.dylib ]; then cp mlx_mac/libmlx.dylib libs; fi
+	@if [ ! -e libmlx.dylib ]; then cp mlx_mac/libmlx.dylib .; fi
+	@if [ ! -e incs/mlx.h ]; then cp mlx_mac/mlx.h incs; fi
+# make libft & gnl
+	@make -C libft >/dev/null 2>&1
+	@if [ ! -e libs/libft.a ]; then cp libft/libft.a libs; fi
+	@make -C gnl >/dev/null 2>&1
+	@if [ ! -e libs/libgnl.a ]; then cp gnl/libgnl.a libs; fi
+# compile c->o
+	$(CC) $(INCS) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJS) */*.gch
@@ -95,11 +110,8 @@ reall: alclean all
 # if you challenge bonus
 bonus: all
 
-bclean:
-	make clean -C bonus
+bclean: clean
 
-bfclean:
-	make fclean -C bonus
-	rm $(BONUS_NAME)
+bfclean: fclean
 
 .PHONY: bonus bclean bfclean

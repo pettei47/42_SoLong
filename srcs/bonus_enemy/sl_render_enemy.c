@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 22:55:16 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/06 23:30:17 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/20 18:45:22 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	sl_set_enemy_start(t_map *m, t_player *en, int rand)
 			}
 		}
 	}
+	ft_putendl_fd("map has no space for enemy", 1);
 }
 
 void	sl_move_enemy(t_long *l, int mv)
@@ -58,14 +59,16 @@ void	sl_move_enemy(t_long *l, int mv)
 
 void	sl_render_enemy(t_long *l, t_player *en, t_pict *img)
 {
-	long	mv;
-	long	map_size;
+	static long	mv;
+	long		map_size;
 
-	mv = rand() % 100;
+	mv++;
+	mv = (l->enemy_mv * l->enemy_mv + mv) % 101;
+	l->enemy_mv += mv;
 	map_size = (l->m->map_y - 2) * (l->m->map_x - 2);
 	if (l->enemy == true)
 	{
-		sl_set_enemy_start(l->m, l->en, rand() % (map_size - 1));
+		sl_set_enemy_start(l->m, l->en, l->enemy_mv % map_size);
 		l->enemy = false;
 	}
 	else if (l->en->x > 0)
