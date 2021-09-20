@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 12:46:40 by teppei            #+#    #+#              #
-#    Updated: 2021/09/20 18:38:02 by teppei           ###   ########.fr        #
+#    Updated: 2021/09/20 22:08:30 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,17 +89,17 @@ fclean: clean
 	@rm -rf ./libmlx.dylib
 	@rm -f incs/mlx.h
 
-ifeq ($(shell uname),Darwin)
+# ifeq ($(shell uname),Darwin)
 alclean: fclean
 	@make fclean -C libft
 	@make fclean -C gnl
 	@make clean -C mlx_mac
-else
-alclean: fclean
-	@make fclean -C libft
-	@make fclean -C gnl
-	@make clean -C mlx_linux
-endif
+# else
+# alclean: fclean
+#	@make fclean -C libft
+#	@make fclean -C gnl
+#	@make clean -C mlx_linux
+# endif
 
 re: fclean all
 cl: all clean
