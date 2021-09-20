@@ -4,6 +4,7 @@ case*
 case*/
 *.gch
 a.out
+so_long
 *.o
 .DS*
 *.swiftmodule

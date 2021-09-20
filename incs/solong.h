@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 18:11:07 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/06 23:13:55 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/12 12:54:45 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_long
 	t_player		*p;
 	t_player		*en;
 	bool			enemy;
+	long			enemy_mv;
 	t_pict			*c;
 	t_pict			*e;
 	t_wins			*wins;
