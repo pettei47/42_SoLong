@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 22:55:16 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/20 18:45:22 by teppei           ###   ########.fr       */
+/*   Updated: 2021/09/20 18:48:00 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ void	sl_render_enemy(t_long *l, t_player *en, t_pict *img)
 		return ;
 	en->mv_x += (en->x - en->mv_x) * 0.5;
 	en->mv_y += (en->y - en->mv_y) * 0.5;
-	sl_draw_img(img, &(en->img), (int)(en->mv_x * DRAW), (int)(en->mv_y * DRAW));
+	sl_draw_img(img, &(en->img), en->mv_x * DRAW, en->mv_y * DRAW);
 }
