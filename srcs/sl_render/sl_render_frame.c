@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 22:11:21 by teppei            #+#    #+#             */
-/*   Updated: 2021/10/25 00:32:45 by teppei           ###   ########.fr       */
+/*   Updated: 2021/10/25 01:23:05 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,15 @@ void	sl_check_complete(t_long *l, t_map *m)
 	sl_close_all(l);
 }
 
+void	sl_put_moves_window(t_long *l)
+{
+	char	*step;
+
+	step = ft_itoa(l->moves);
+	mlx_string_put(l->wins->mlx, l->wins->win, 64, 80, BLACKCOLOR, step);
+	free(step);
+}
+
 int	sl_render_frame(t_long *l)
 {
 	if (l->m->map[l->p->y][l->p->x] == 'E')
@@ -77,5 +86,6 @@ int	sl_render_frame(t_long *l)
 	sl_render_enemy(l, l->en, l->imgs);
 	sl_render_player(l, l->p, l->imgs);
 	mlx_put_image_to_window(l->wins->mlx, l->wins->win, l->imgs->i, 0, 0);
+	sl_put_moves_window(l);
 	return (SUCCESS);
 }
