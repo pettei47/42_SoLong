@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 16:20:15 by teppei            #+#    #+#             */
-/*   Updated: 2021/08/18 23:22:21 by teppei           ###   ########.fr       */
+/*   Updated: 2021/10/25 00:26:03 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,19 @@ char	*sl_check_char_closed(char *line, t_map *m, int y, int f)
 	return (line);
 }
 
-void	sl_check_map(char *file, t_map *m)
+bool	sl_check_rect(char *line, t_map *m, long rect)
+{
+	long	len;
+
+	len = ft_strlen(line);
+	if (rect == 1 && (len > 0 || m->map_y == 0))
+		return (false);
+	if (rect == 0 && len != m->map_x)
+		return (false);
+	return (true);
+}
+
+void	sl_check_map(char *file, t_map *m, long rect)
 {
 	long	fd;
 	char	*line;
@@ -78,14 +90,17 @@ void	sl_check_map(char *file, t_map *m)
 	m->map_y = 0;
 	while (get_next_line(fd, &line))
 	{
+		if (ft_strlen(line) == 0)
+			rect = 1;
 		if (m->map_y == 0)
 			m->map_x = ft_strlen(line);
+		if (!sl_check_rect(line, m, rect))
+			sl_error("map must be rectangular.", m, 1);
+		if (rect == 0)
+			line = sl_check_char_closed(line, m, m->map_y++, 0);
 		else
-		{
-			if (ft_strlen(line) != (size_t)m->map_x)
-				sl_error("map must be rectangular.", m, 1);
-		}
-		line = sl_check_char_closed(line, m, m->map_y++, 0);
+			free(line);
+		line = NULL;
 	}
 	close(fd);
 	if (ft_strncmp(line, "", 1))
@@ -93,19 +108,17 @@ void	sl_check_map(char *file, t_map *m)
 	free(line);
 }
 
-void	sl_check_ber(int ac, char **av, t_map *m)
+void	sl_check_ber(char **av, t_map *m)
 {
 	char	*str;
 	int		len;
 
-	if (ac != 2)
-		sl_error("usage: './solong mapfile_path'\nonly 1 argument is OK", m, 1);
 	str = &av[1][0];
 	if (ft_strrchr(av[1], '/'))
 		str = ft_strrchr(av[1], '/') + 1;
 	len = ft_strlen(str);
 	if (len < 5 || ft_strncmp(str + len - 4, ".ber", 5))
 		sl_error("file extention must be \".ber\"", m, 1);
-	sl_check_map(av[1], m);
+	sl_check_map(av[1], m, 0);
 	sl_check_char_exist(m);
 }

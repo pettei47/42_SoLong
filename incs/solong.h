@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 18:11:07 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/12 12:54:45 by teppei           ###   ########.fr       */
+/*   Updated: 2021/10/25 00:43:15 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "../gnl/get_next_line.h"
-# include "./mlx.h"
+# include "../mlx_mac/mlx.h"
 
+# define MLX_ERR	"validateTextureDimensions:1216: failed assertion \
+`MTLTextureDescriptor has hight or width greater \
+than the maximum allowed size of 16384.'"
 # define FAILURE	-1
 # define DONE		0
 # define SUCCESS	1
@@ -40,7 +43,7 @@
 # define L			37
 # define MAP_ELEM	"CEP"
 # define MAP_CHAR	"10CEP"
-# define BUF_SIZE	200
+# define BUF_SIZE	1024
 # define PLAYER		"./textures/player_01.xpm"
 # define ENEMY		"./textures/enemy_01.xpm"
 # define WALL		"./textures/wall_01.xpm"
@@ -111,7 +114,7 @@ typedef struct s_long
 }					t_long;
 
 /* check input file */
-void		sl_check_ber(int ac, char **av, t_map *m);
+void		sl_check_ber(char **av, t_map *m);
 void		sl_check_char_exist(t_map *m);
 /* error handling */
 void		sl_error(char *msg, void *p, int f);
@@ -134,6 +137,7 @@ t_pict		sl_load_texture(t_long *l, char *path);
 t_pict		*sl_set_texture_img(t_long *l, char *path);
 /* render frame*/
 int			sl_render_frame(t_long *l);
+void		sl_render_player(t_long *l, t_player *p, t_pict *i);
 void		sl_draw_img(t_pict *img, t_pict *img2, int x, int y);
 int			sl_key_hook(int key, t_long *l);
 void		sl_render_enemy(t_long *l, t_player *en, t_pict *img);

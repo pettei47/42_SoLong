@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 16:18:44 by teppei            #+#    #+#             */
-/*   Updated: 2021/09/06 22:46:53 by teppei           ###   ########.fr       */
+/*   Updated: 2021/10/25 00:42:39 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ void	sl_init_mlx(t_long *l, void *mlx, t_pict *i, t_map *m)
 {
 	int	x;
 	int	y;
-	int	sc_x;
-	int	sc_y;
 
 	x = m->map_x * 64;
 	y = m->map_y * 64;
-	mlx_get_screen_size(l->wins->mlx, &sc_x, &sc_y);
+	if (x > 16384 || y > 16384)
+		sl_error(MLX_ERR, l, 2);
 	l->wins->win = mlx_new_window(mlx, x, y, "SoLong");
 	l->imgs->i = mlx_new_image(mlx, x, y);
 	l->imgs->addr = mlx_get_data_addr(i->i, &i->bpp, &i->line, &i->endian);
@@ -37,7 +36,7 @@ void	sl_init_mlx(t_long *l, void *mlx, t_pict *i, t_map *m)
 
 void	sl_set_textures(t_long *l)
 {
-	(void)l;
+
 	l->p->img = sl_load_texture(l, PLAYER);
 	l->en->img = sl_load_texture(l, ENEMY);
 	l->wall = sl_set_texture_img(l, WALL);
@@ -54,7 +53,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		sl_error("must be 1 argments.", NULL, 3);
 	sl_init_map(&map);
-	sl_check_ber(ac, av, &map);
+	sl_check_ber(av, &map);
 	l = sl_init_long(&map);
 	l->wins->mlx = mlx_init();
 	sl_init_mlx(l, l->wins->mlx, l->imgs, l->m);
