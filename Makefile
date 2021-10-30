@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 12:46:40 by teppei            #+#    #+#              #
-#    Updated: 2021/10/25 00:35:16 by teppei           ###   ########.fr        #
+#    Updated: 2021/10/30 21:14:24 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,12 +39,18 @@ LIBS		=	-lft -lgnl -lmlx
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	if [ ! -L libmlx.dylib ]; then make -C mlx_mac 2>/dev/null; fi
-	@if [ ! -L libmlx.dylib ]; then ln -s mlx_mac/libmlx.dylib .; fi
-	if [ ! -e libft/libft.a ]; then make -C libft; fi
-	if [ ! -e gnl/gnl.a ]; then make -C gnl; fi
+$(NAME): $(OBJS) libft/libft.a libmlx.dylib gnl/gnl.a
 	$(CC) -o $@ $^ $(LINK) $(LIBS)
+
+libft/libft.a:
+	make -C libft
+
+gnl/gnl.a:
+	make -C gnl
+
+libmlx.dylib:
+	make -C mlx_mac 2>/dev/null
+	ln -s mlx_mac/libmlx.dylib .
 
 .c.o:
 	$(CC) $(INCS) $(CFLAGS) -c $< -o $@
